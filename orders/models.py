@@ -13,7 +13,7 @@ class Order(models.Model):
     status = models.CharField(
         max_length=12,
         choices=STATUS_CHOICES,
-        default='new'
+        default='new',
     )
     created_at = models.DateTimeField(auto_now_add=True)
     external_id = models.CharField(max_length=128, unique=True)
@@ -31,12 +31,12 @@ class OrderDetail(models.Model):
     order = models.ForeignKey(
         to=Order,
         on_delete=models.CASCADE,
-        related_name='details'
+        related_name='details',
     )
     amount = models.IntegerField()
     product = models.ForeignKey(
         to=Product,
         on_delete=models.CASCADE,
-        related_name='products'
+        related_name='product',
     )
     price = models.DecimalField(max_digits=10, decimal_places=2)
