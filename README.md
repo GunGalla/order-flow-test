@@ -1,12 +1,9 @@
-# Order Flow API: get info about order
+# Order Flow API: get info about orders
 
 ### Tests and linter status:
 [![Actions Status](https://github.com/GunGalla/order-flow-test/workflows/Python%20CI/badge.svg)](https://github.com/GunGalla/order-flow-test/actions)
-[![Maintainability](https://api.codeclimate.com/v1/badges/ec1c7475cadc36aa69ff/maintainability)](https://codeclimate.com/github/GunGalla/python-project-52/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/ec1c7475cadc36aa69ff/test_coverage)](https://codeclimate.com/github/GunGalla/python-project-52/test_coverage)
-
-This web app can help you to watch over your tasks.
-To use this app you need to have an account, registration is very simple.
+[![Maintainability](https://api.codeclimate.com/v1/badges/36b43c23f4aa00280b62/maintainability)](https://codeclimate.com/github/GunGalla/order-flow-test/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/36b43c23f4aa00280b62/test_coverage)](https://codeclimate.com/github/GunGalla/order-flow-test/test_coverage)
 
 
 Minimum required software to install the project is:
