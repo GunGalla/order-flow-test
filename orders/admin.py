@@ -1,3 +1,7 @@
-# from django.contrib import admin
+"""Admin panel module"""
+from django.contrib import admin
+from orders.models import Order, OrderDetail, Product
 
-# Register your models here.
+admin.site.register(Order)
+admin.site.register(OrderDetail)
+admin.site.register(Product)
