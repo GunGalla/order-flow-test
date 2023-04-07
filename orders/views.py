@@ -4,6 +4,7 @@ from rest_framework.exceptions import PermissionDenied
 
 from orders.models import Order
 from orders.serializers import OrderSerializer
+from orders.pagination import CustomPagination
 
 
 class OrderAPIList(generics.ListCreateAPIView):
@@ -12,6 +13,7 @@ class OrderAPIList(generics.ListCreateAPIView):
     """
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+    pagination_class = CustomPagination
 
 
 class OrderAPIUpdate(generics.RetrieveUpdateDestroyAPIView):
