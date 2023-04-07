@@ -1,5 +1,6 @@
 """Serializers for orders"""
 from rest_framework import serializers
+from rest_framework.exceptions import PermissionDenied
 
 from orders.models import Order, OrderDetail, Product
 
@@ -50,6 +51,7 @@ class OrderSerializer(serializers.ModelSerializer):
         fields = ['id', 'status', 'created_at', 'external_id', 'details']
 
     def create(self, validated_data):
+        """Overriding default method to be able to write nested fields"""
         details_data = validated_data.pop('details')
         order = Order.objects.create(**validated_data)
         for order_detail in details_data:
@@ -61,3 +63,20 @@ class OrderSerializer(serializers.ModelSerializer):
                 **order_detail
             )
         return order
+
+    def update(self, instance, validated_data):
+        """
+        Protect orders with statuses different for 'new' from updating.
+        Also saving only changes in 'external_id' field.
+        """
+        if instance.status != 'new':
+            raise PermissionDenied(
+                detail="You can not change orders "
+                       "with status different from 'new'."
+            )
+        instance.external_id = validated_data.get(
+            'external_id',
+            instance.external_id
+        )
+        instance.save()
+        return instance
