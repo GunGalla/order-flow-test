@@ -1,6 +1,6 @@
 """Serializers for orders"""
 from rest_framework import serializers
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.exceptions import MethodNotAllowed
 
 from orders.models import Order, OrderDetail, Product
 
@@ -70,9 +70,10 @@ class OrderSerializer(serializers.ModelSerializer):
         Also saving only changes in 'external_id' field.
         """
         if instance.status != 'new':
-            raise PermissionDenied(
+            raise MethodNotAllowed(
+                'put',
                 detail="You can not change orders "
-                       "with status different from 'new'."
+                       "with status different from 'new'.",
             )
         instance.external_id = validated_data.get(
             'external_id',

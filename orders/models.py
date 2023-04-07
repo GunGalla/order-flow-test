@@ -1,14 +1,15 @@
 """Order related models"""
 from django.db import models
 
-
-class Order(models.Model):
-    """Order model"""
-    STATUS_CHOICES = (
+STATUS_CHOICES = (
         ('new', 'new'),
         ('accepted', 'accepted'),
         ('failed', 'failed'),
     )
+
+
+class Order(models.Model):
+    """Order model"""
 
     status = models.CharField(
         max_length=12,

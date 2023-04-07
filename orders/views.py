@@ -1,8 +1,11 @@
 """Order views module"""
+from rest_framework import status as st
 from rest_framework import generics
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.response import Response
+from rest_framework.exceptions import MethodNotAllowed, NotFound
+from rest_framework.decorators import api_view
 
-from orders.models import Order
+from orders.models import Order, STATUS_CHOICES
 from orders.serializers import OrderSerializer
 from orders.pagination import CustomPagination
 
@@ -30,7 +33,31 @@ class OrderAPIUpdate(generics.RetrieveUpdateDestroyAPIView):
     def perform_destroy(self, instance):
         """Protect order from delete if its status is 'accepted'."""
         if instance.status == 'accepted':
-            raise PermissionDenied(
-                detail="You can not delete orders with status 'accepted'."
+            raise MethodNotAllowed(
+                'delete',
+                detail="You can not delete orders with status 'accepted'.",
             )
         instance.delete()
+
+
+@api_view(['POST'])
+def status_change(request, pk, status):
+    """Change order status"""
+    if status not in [x[0] for x in STATUS_CHOICES]:
+        raise MethodNotAllowed(
+            'post',
+            detail="You can change order status"
+                   " only to 'accepted' or 'failed'",
+        )
+    order = Order.objects.get(id=pk)
+    if not order:
+        raise NotFound(f'Product with id {pk} does not exist.')
+    if order.status != 'new':
+        print(order.status)
+        raise MethodNotAllowed(
+            'post',
+            detail="You can not change order status if it is not 'new'",
+        )
+    order.status = status
+    order.save()
+    return Response(status=st.HTTP_200_OK)
