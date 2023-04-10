@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Third party apps
     'django_extensions',
     'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -134,5 +135,5 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 3
+    'PAGE_SIZE': 3,
 }

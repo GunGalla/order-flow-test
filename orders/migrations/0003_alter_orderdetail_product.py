@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-
+# flake8: noqa
 
 class Migration(migrations.Migration):
 

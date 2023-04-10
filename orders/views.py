@@ -1,4 +1,6 @@
 """Order views module"""
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 from rest_framework import status as st
 from rest_framework import generics
 from rest_framework.response import Response
@@ -17,6 +19,9 @@ class OrderAPIList(generics.ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     pagination_class = CustomPagination
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    filterset_fields = ['external_id', 'status']
+    ordering_fields = ['id', 'status', 'created_at']
 
 
 class OrderAPIUpdate(generics.RetrieveUpdateDestroyAPIView):
@@ -53,7 +58,6 @@ def status_change(request, pk, status):
     if not order:
         raise NotFound(f'Product with id {pk} does not exist.')
     if order.status != 'new':
-        print(order.status)
         raise MethodNotAllowed(
             'post',
             detail="You can not change order status if it is not 'new'",

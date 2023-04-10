@@ -14,11 +14,4 @@ class CustomPagination(LimitOffsetPagination):
         to_number = limit_index if limit_index <= self.count else self.count
         content_range = f'{self.offset + 1}-{to_number}/{self.count}'
         headers = {"Content-Range": content_range}
-        return Response({
-            'links': {
-                'next': self.get_next_link(),
-                'previous': self.get_previous_link()
-            },
-            'count': self.count,
-            'results': data
-        }, headers=headers)
+        return Response(data, headers=headers)
