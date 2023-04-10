@@ -15,7 +15,6 @@ ipython==8.12.0
 jedi==0.18.2
 matplotlib-inline==0.1.6
 mccabe==0.7.0
--e git+ssh://git@github.com/GunGalla/order-flow-test.git@f9b94a2efd4236770086c77c481c0ae37a7be161#egg=order_flow
 parso==0.8.3
 pexpect==4.8.0
 pickleshare==0.7.5
