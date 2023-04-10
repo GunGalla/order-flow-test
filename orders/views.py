@@ -12,14 +12,17 @@ from rest_framework.decorators import api_view
 from orders.models import Order, STATUS_CHOICES
 from orders.serializers import OrderSerializer
 from orders.pagination import CustomPagination
+from order_flow.settings import DEBUG
 
 
 class OrderAPIListCreate(generics.ListCreateAPIView):
     """
     Returns list of orders in JSON format and gave an option to create orders
     """
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
-    parser_classes = [JSONParser]
+    if DEBUG:
+        renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
+    else:
+        renderer_classes = [JSONRenderer]
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     pagination_class = CustomPagination
@@ -32,7 +35,10 @@ class OrderAPIRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     """
     Returns distinct order JSON info and gave an option to update and delete it
     """
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
+    if DEBUG:
+        renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
+    else:
+        renderer_classes = [JSONRenderer]
     parser_classes = [JSONParser]
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
