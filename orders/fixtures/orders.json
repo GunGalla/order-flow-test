@@ -1,0 +1,52 @@
+[
+  {
+    "model": "orders.order",
+    "pk": 1,
+    "fields": {
+      "external_id": "CB-001"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 2,
+    "fields": {
+      "external_id": "CB-002"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 3,
+    "fields": {
+      "external_id": "CB-003"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 4,
+    "fields": {
+      "external_id": "CB-004"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 5,
+    "fields": {
+      "external_id": "CB-005"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 6,
+    "fields": {
+      "external_id": "CB-006"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 7,
+    "fields": {
+      "status": "accepted",
+      "external_id": "CB-007"
+    }
+  }
+]

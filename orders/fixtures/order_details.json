@@ -1,0 +1,92 @@
+[
+  {
+    "model": "orders.orderdetail",
+    "pk": 1,
+    "fields": {
+      "order": 1,
+      "amount": 10,
+      "product": 2,
+      "price": "20.00"
+    }
+  },
+  {
+    "model": "orders.orderdetail",
+    "pk": 2,
+    "fields": {
+      "order": 1,
+      "amount": 15,
+      "product": 1,
+      "price": "15.00"
+    }
+  },
+  {
+    "model": "orders.orderdetail",
+    "pk": 3,
+    "fields": {
+      "order": 2,
+      "amount": 14,
+      "product": 4,
+      "price": "56.00"
+    }
+  },
+  {
+    "model": "orders.orderdetail",
+    "pk": 4,
+    "fields": {
+      "order": 3,
+      "amount": 15,
+      "product": 5,
+      "price": "75.00"
+    }
+  },
+  {
+    "model": "orders.orderdetail",
+    "pk": 5,
+    "fields": {
+      "order": 4,
+      "amount": 10,
+      "product": 4,
+      "price": "40.00"
+    }
+  },
+  {
+    "model": "orders.orderdetail",
+    "pk": 6,
+    "fields": {
+      "order": 5,
+      "amount": 15,
+      "product": 2,
+      "price": "30.00"
+    }
+  },
+  {
+    "model": "orders.orderdetail",
+    "pk": 7,
+    "fields": {
+      "order": 6,
+      "amount": 10,
+      "product": 1,
+      "price": "10.00"
+    }
+  },
+  {
+    "model": "orders.orderdetail",
+    "pk": 8,
+    "fields": {
+      "order": 7,
+      "amount": 10,
+      "product": 3,
+      "price": "30.00"
+    }
+  },
+  {
+    "model": "orders.orderdetail",
+    "pk": 9,
+    "fields": {
+      "order": 7,
+      "amount": 15,
+      "product": 2,
+      "price": "30.00"
+    }
+  }
+]

@@ -16,11 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from orders.views import OrderAPIList, OrderAPIUpdate, status_change
+from orders.views import (
+    OrderAPIListCreate,
+    OrderAPIRetrieveUpdateDestroy,
+    status_change,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/orders', OrderAPIList.as_view()),
-    path('api/v1/orders/<int:pk>', OrderAPIUpdate.as_view()),
-    path('api/v1/orders/<int:pk>/<str:status>', status_change),
+    path('api/v1/orders', OrderAPIListCreate.as_view(), name='orders'),
+    path('api/v1/orders/<int:pk>',
+         OrderAPIRetrieveUpdateDestroy.as_view(),
+         name='order'),
+    path('api/v1/orders/<int:pk>/<str:status>',
+         status_change,
+         name='status_change'),
 ]

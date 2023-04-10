@@ -1,5 +1,6 @@
 """Order related models"""
 from django.db import models
+from django.utils import timezone
 
 STATUS_CHOICES = (
         ('new', 'new'),
@@ -16,7 +17,7 @@ class Order(models.Model):
         choices=STATUS_CHOICES,
         default='new',
     )
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(default=timezone.now)
     external_id = models.CharField(max_length=128, unique=True)
 
 

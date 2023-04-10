@@ -3,6 +3,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from rest_framework import status as st
 from rest_framework import generics
+from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
+from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.exceptions import MethodNotAllowed, NotFound
 from rest_framework.decorators import api_view
@@ -12,10 +14,12 @@ from orders.serializers import OrderSerializer
 from orders.pagination import CustomPagination
 
 
-class OrderAPIList(generics.ListCreateAPIView):
+class OrderAPIListCreate(generics.ListCreateAPIView):
     """
     Returns list of orders in JSON format and gave an option to create orders
     """
+    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
+    parser_classes = [JSONParser]
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     pagination_class = CustomPagination
@@ -24,10 +28,12 @@ class OrderAPIList(generics.ListCreateAPIView):
     ordering_fields = ['id', 'status', 'created_at']
 
 
-class OrderAPIUpdate(generics.RetrieveUpdateDestroyAPIView):
+class OrderAPIRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     """
     Returns distinct order JSON info and gave an option to update and delete it
     """
+    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
+    parser_classes = [JSONParser]
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
@@ -48,15 +54,17 @@ class OrderAPIUpdate(generics.RetrieveUpdateDestroyAPIView):
 @api_view(['POST'])
 def status_change(request, pk, status):
     """Change order status"""
-    if status not in [x[0] for x in STATUS_CHOICES]:
+    try:
+        order = Order.objects.get(id=pk)
+    except Order.DoesNotExist:
+        raise NotFound(f'Order with id {pk} does not exist.')
+
+    if status not in [statuses[0] for statuses in STATUS_CHOICES]:
         raise MethodNotAllowed(
             'post',
             detail="You can change order status"
                    " only to 'accepted' or 'failed'",
         )
-    order = Order.objects.get(id=pk)
-    if not order:
-        raise NotFound(f'Product with id {pk} does not exist.')
     if order.status != 'new':
         raise MethodNotAllowed(
             'post',
