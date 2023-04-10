@@ -5,6 +5,13 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/36b43c23f4aa00280b62/maintainability)](https://codeclimate.com/github/GunGalla/order-flow-test/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/36b43c23f4aa00280b62/test_coverage)](https://codeclimate.com/github/GunGalla/order-flow-test/test_coverage)
 
+To check how it works you can send requests to:
+- https://order-flow-test.up.railway.app/api/v1/orders
+
+There are following routes available:
+- api/v1/orders
+- api/v1/orders/<int:pk>
+- api/v1/orders/<int:pk>/<str:status>
 
 Minimum required software to install the project is:
 
