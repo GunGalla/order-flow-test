@@ -93,7 +93,7 @@ class OrderListCreateViewTestCase(SetUpTests):
         error = str(response.data['external_id'][0])
         self.assertEqual(error, 'order with this external id already exists.')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        requirements.txt
+
         response2 = self.client.post(
             self.orders_url,
             self.wrong_test_data,
