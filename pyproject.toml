@@ -4,6 +4,10 @@ version = "0.1.0"
 description = "This app can get info about orders in JSON format through API"
 authors = ["Iaroslav <GunGalla@gmail.com>"]
 readme = "README.md"
+packages = [
+    {include = "orders"},
+    {include = "order_flow"}
+]
 repository = "https://github.com/GunGalla/order-flow-test"
 classifiers = [
     "Programming Language :: Python :: 3",

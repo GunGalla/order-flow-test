@@ -19,7 +19,7 @@ lint:
 selfcheck:
 	poetry check
 
-check: test
+check: selfcheck lint test
 
 dev:
 	python manage.py runserver 0.0.0.0:8000
