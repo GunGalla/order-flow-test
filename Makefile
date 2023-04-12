@@ -2,7 +2,7 @@ install:
 	poetry install
 
 test:
-	python manage.py test
+	poetry run python manage.py test
 
 build:
 	poetry build
@@ -14,7 +14,7 @@ package-install:
 	python3 -m pip install --force-reinstall dist/*.whl
 
 lint:
-	flake8 order_flow orders
+	poetry run flake8 order_flow orders
 
 selfcheck:
 	poetry check
