@@ -14,7 +14,7 @@ package-install:
 	python3 -m pip install --force-reinstall dist/*.whl
 
 lint:
-	flake8 order_flow orders
+	flake8 orders
 
 selfcheck:
 	poetry check
