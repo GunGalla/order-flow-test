@@ -1,9 +1,0 @@
-**/.github
-**/.venv
-.coverage
-coverage.xml
-.env
-.gitignore
-db.sqlite3
-poetry.lock
-pyproject.toml

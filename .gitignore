@@ -132,3 +132,7 @@ dmypy.json
 /.idea
 /result.xml
 
+# Dockerfile
+Dockerfile
+.dockerignore
+docker-compose.yml
