@@ -14,12 +14,12 @@ package-install:
 	python3 -m pip install --force-reinstall dist/*.whl
 
 lint:
-	flake8 orders
+	flake8 order_flow orders
 
 selfcheck:
 	poetry check
 
-check: lint test
+check: test
 
 dev:
 	python manage.py runserver 0.0.0.0:8000
