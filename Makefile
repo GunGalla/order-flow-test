@@ -2,7 +2,7 @@ install:
 	poetry install
 
 test:
-	poetry run python manage.py test
+	python manage.py test
 
 build:
 	poetry build
@@ -22,7 +22,7 @@ selfcheck:
 check: selfcheck lint test
 
 dev:
-	poetry run python manage.py runserver
+	python manage.py runserver 0.0.0.0:8000
 
 PORT ?= 8000
 
@@ -33,3 +33,13 @@ shell:
 
 test-coverage:
 	poetry run coverage run manage.py test -v 2 && poetry run coverage xml
+
+load:
+	python manage.py loaddata orders.json
+	python manage.py loaddata products.json
+	python manage.py loaddata order_details.json
+
+migrate:
+	python manage.py migrate
+
+start: migrate load test dev

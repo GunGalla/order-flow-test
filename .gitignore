@@ -134,3 +134,5 @@ dmypy.json
 
 # Dockerfile
 Dockerfile
+.dockerignore
+docker-compose.yml
